@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>WubbyCorp Employee Authorization</title>
+        <link rel="shortcut icon" type="image/png" href="./wubbycorp.png" />
+        <link href="./bootstrap.cosmo.min.css" rel="stylesheet" />
+        <script src="./jquery.min.js"></script>
+
+        <script type="text/javascript">
+            $(document).ready(function() {
+                var clientid = "9qy1a12zkwz6zxmhpgl7g05c0vwhi0";
+                var scope    = "chat:read+user_subscriptions";
+                var redirect = "https://githubtesting.xathz.net/wubbycorp/authorize/";
+
+                $.urlParam = function(name) {
+                    var results = new RegExp('[\?#&]' + name + '=([^&]*)').exec(window.location.href);
+                    if (results == null) return null;
+                    return decodeURI(results[1]) || 0;
+                }
+
+                var token = $.urlParam('access_token');
+                var error = $.urlParam('error_description');
+
+                if (token) {
+                    $("#oauthtoken").val('oauth:' + encodeURIComponent(token));
+                    $("#success").show();
+                    $("#content").hide();
+                }
+
+                if (error) {
+                    $("#faildescription").val((error).replace(/\+/g, ' '));
+                    $("#fail").show();
+                }
+
+                $("#twitchlink").attr("href", 'https://id.twitch.tv/oauth2/authorize?response_type=token&force_verify=true&client_id=' + clientid + '&scope=' + scope + '&redirect_uri=' + redirect);
+            });
+        </script>
+    </head>
+
+    <body style="padding-top: 2rem;">
+        <div style="width: 35rem; margin: auto;">
+            <div class="card border-info mb-3" style="max-width: 80rem;">
+                <div class="card-header font-weight-bold">WubbyCorp Employee Authorization</div>
+                <div class="card-body">
+
+                    <div class="alert alert alert-success" id="success" style="display: none;">
+                        <p>You successfully authorized with Twitch.</p>
+                        <p>Do <strong>NOT</strong> share your token with anyone. Copy the token below and paste into the prompt in WubbyCorp: The Game.</p>
+                        <label class="control-label" for="oauthtoken">OAuth Token</label>
+                        <input class="form-control" id="oauthtoken" type="text" placeholder="oauth:exampletoken" readonly="" />
+                    </div>
+
+                    <div class="alert alert alert-danger" id="fail" style="display: none;">
+                        <p>Failed to verify your account on Twitch, please try again. If this keeps happening please contact <strong>Xathz#6861</strong> on <a class="alert-link" href="https://discordapp.com/invite/wubby" target="_blank" role="button">discord</a>.</p>
+                        <label class="control-label" for="faildescription">Error</label>
+                        <input class="form-control" id="faildescription" type="text" placeholder="unknown" readonly="" />
+                    </div>
+
+                    <div id="content">
+                        <p class="card-text">Please ensure that you are an employee (<a class="btn-link" href="https://www.twitch.tv/subs/PaymoneyWubby" target="_blank" role="button">subscriber</a>) of WubbyCorp.</p>
+                        <p class="card-text">You need to connect your Twitch account to verify that you are a subscriber and to make some features of WubbyCorp: The Game function properly (e.g. access to read PaymoneyWubby’s chat).</p>
+                        <div class="mx-auto text-center">
+                            <a class="btn btn-info" id="twitchlink" role="button">Connect with Twitch</a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

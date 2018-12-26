@@ -1,0 +1,215 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{5D9FA2BC-0E3C-4FBA-80C5-B7E6DC2DBA8E}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>WubbyCorp</RootNamespace>
+    <AssemblyName>WubbyCorp</AssemblyName>
+    <TargetFrameworkVersion>v4.7</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>WubbyCorp.Program</StartupObject>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Resources\WubbyCorp.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="IntroForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="IntroForm.Designer.cs">
+      <DependentUpon>IntroForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="IntroForm.resx">
+      <DependentUpon>IntroForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\WubbyCorp.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Emotes\Badges\1YearSubscriber.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Emotes\Badges\2YearSubscriber.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Emotes\Badges\3MonthSubscriber.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Emotes\Badges\6MonthSubscriber.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Emotes\Badges\Subscriber.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Emotes\Tier1\wubbyBalloons.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Emotes\Tier1\wubbyBerry.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Emotes\Tier1\wubbyBop.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Emotes\Tier1\wubbyCado.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Emotes\Tier1\wubbyCat.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Emotes\Tier1\wubbyCroc.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Emotes\Tier1\wubbyCup.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Emotes\Tier1\wubbyDucky.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Emotes\Tier1\wubbyEgg.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Emotes\Tier1\wubbyExcite.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Emotes\Tier1\wubbyFather.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Emotes\Tier1\wubbyFlop.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Emotes\Tier1\wubbyGrinch.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Emotes\Tier1\wubbyKiss.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Emotes\Tier1\wubbyLEFT.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Emotes\Tier1\wubbyLifeguard.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Emotes\Tier1\wubbyLoss.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Emotes\Tier1\wubbyMAD.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Emotes\Tier1\wubbyMahmoud.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Emotes\Tier1\wubbyMeat.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Emotes\Tier1\wubbyMoney.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Emotes\Tier1\wubbyProducer.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Emotes\Tier1\wubbyRANCH.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Emotes\Tier1\wubbyRIGHT.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Emotes\Tier1\wubbySanta.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Emotes\Tier1\wubbySon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Emotes\Tier1\wubbyTears.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Emotes\Tier1\wubbyTINYGLASS.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Emotes\Tier1\wubbyTrash.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Emotes\Tier1\wubbyWave.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Emotes\Tier1\wubbyZorb.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Emotes\Tier2\wubbyLUL.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Emotes\Tier3\wubbyEYPOWER.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
