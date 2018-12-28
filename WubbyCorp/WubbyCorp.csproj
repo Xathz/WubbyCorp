@@ -38,8 +38,19 @@
     <ApplicationIcon>Resources\WubbyCorp.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
+      <HintPath>..\packages\NLog.4.5.11\lib\net45\NLog.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Transactions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -51,12 +62,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IntroForm.cs">
+    <Compile Include="Constants.cs" />
+    <Compile Include="GameData\Configuration.cs" />
+    <Compile Include="GameData\GameDataManager.cs" />
+    <Compile Include="OAuthForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="IntroForm.Designer.cs">
-      <DependentUpon>IntroForm.cs</DependentUpon>
+    <Compile Include="OAuthForm.Designer.cs">
+      <DependentUpon>OAuthForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="LoggingManager.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -65,8 +80,11 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="IntroForm.resx">
-      <DependentUpon>IntroForm.cs</DependentUpon>
+    <Compile Include="Settings\Configuration.cs" />
+    <Compile Include="Settings\FormState.cs" />
+    <Compile Include="Settings\SettingsManager.cs" />
+    <EmbeddedResource Include="OAuthForm.resx">
+      <DependentUpon>OAuthForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
@@ -81,6 +99,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

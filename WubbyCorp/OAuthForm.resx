@@ -117,4 +117,12 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="OAuthExplanationLabel.Text" xml:space="preserve">
+    <value>You need to connect your Twitch account to verify that you are a subscriber and to make some features work properly (e.g. access to read PaymoneyWubby’s chat).
+
+Linking your Twitch account to the game only takes a few seconds and is completely safe. The game never sees your password or private information, only what channels you are a subscriber to so we can confirm you are subscribed to PaymoneyWubby.
+
+Why would we waste our time making a game that non-subs can play?
+Miss us with that non-sub shit.</value>
+  </data>
 </root>
