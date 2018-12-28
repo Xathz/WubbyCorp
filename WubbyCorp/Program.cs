@@ -20,10 +20,20 @@ namespace WubbyCorp {
             SettingsManager.Load();
             GameDataManager.Load();
 
+            // Process settings
+            if (string.IsNullOrWhiteSpace(SettingsManager.Configuration.TelemetryID)) {
+                SettingsManager.Configuration.TelemetryID = Guid.NewGuid().ToString();
+            }
+
+            SettingsManager.Configuration.TimesLaunched++;
+
             if (string.IsNullOrWhiteSpace(SettingsManager.Configuration.OAuthToken)) {
                 OAuthForm oauthForm = new OAuthForm();
                 oauthForm.ShowDialog();
             }
+
+            SettingsManager.Save();
+            // ================
 
             Application.Run(new MainForm());
         }

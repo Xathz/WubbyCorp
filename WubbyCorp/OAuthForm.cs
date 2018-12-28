@@ -58,7 +58,6 @@ namespace WubbyCorp {
 
         private void ContinueButton_Click(object sender, EventArgs e) {
             SettingsManager.Configuration.OAuthToken = OAuthTokenTextBox.Text.Trim();
-            SettingsManager.Save();
             Close();
         }
 

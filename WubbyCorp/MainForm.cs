@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Drawing;
+using System.IO;
 using System.Windows.Forms;
 using WubbyCorp.Settings;
 
@@ -52,6 +53,9 @@ namespace WubbyCorp {
             TrayContextMenuStrip.PerformLayout();
             TrayNotifyIcon.Visible = true;
 
+#if !DEBUG
+            Telemetry.TrackEvent("Launched", "TimesLaunched", SettingsManager.Configuration.TimesLaunched);
+#endif
         }
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e) {

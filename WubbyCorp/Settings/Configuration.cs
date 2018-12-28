@@ -8,6 +8,21 @@
         public string OAuthToken { get; set; } = string.Empty;
 
         /// <summary>
+        /// Randomly genrated ID for <see cref="Telemetry"/>. Default: <see cref="string.Empty"/>
+        /// </summary>
+        public string TelemetryID { get; set; } = string.Empty;
+
+        /// <summary>
+        /// Enables/disables <see cref="Telemetry"/>.
+        /// </summary>
+        public bool TelemetryEnabled { get; set; } = true;
+
+        /// <summary>
+        /// How many times the game was launched (started).
+        /// </summary>
+        public int TimesLaunched { get; set; }
+
+        /// <summary>
         /// When minimized, hide the window.
         /// </summary>
         public bool MinimizeToTray { get; set; } = true;

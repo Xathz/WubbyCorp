@@ -51,6 +51,7 @@
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.Transactions" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -83,6 +84,7 @@
     <Compile Include="Settings\Configuration.cs" />
     <Compile Include="Settings\FormState.cs" />
     <Compile Include="Settings\SettingsManager.cs" />
+    <Compile Include="Telemetry.cs" />
     <EmbeddedResource Include="OAuthForm.resx">
       <DependentUpon>OAuthForm.cs</DependentUpon>
     </EmbeddedResource>
