@@ -45,7 +45,7 @@ namespace WubbyCorp {
                 Size = SettingsManager.Configuration.MainForm.Size;
             } else {
                 SettingsManager.Configuration.MainForm.Size = new Size(800, 600);
-                 Size = new Size(800, 600);
+                Size = SettingsManager.Configuration.MainForm.Size;
             }
         }
 

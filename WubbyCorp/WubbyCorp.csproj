@@ -64,6 +64,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Constants.cs" />
+    <Compile Include="Controls\Company.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\Company.Designer.cs">
+      <DependentUpon>Company.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Extensions\DoubleExt.cs" />
     <Compile Include="GameData\Configuration.cs" />
     <Compile Include="GameData\GameDataManager.cs" />
     <Compile Include="OAuthForm.cs">
@@ -85,6 +92,11 @@
     <Compile Include="Settings\FormState.cs" />
     <Compile Include="Settings\SettingsManager.cs" />
     <Compile Include="Telemetry.cs" />
+    <Compile Include="Utilities\ImageUtils.cs" />
+    <Compile Include="WubbyCadosManager.cs" />
+    <EmbeddedResource Include="Controls\Company.resx">
+      <DependentUpon>Company.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="OAuthForm.resx">
       <DependentUpon>OAuthForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -232,5 +244,6 @@
   <ItemGroup>
     <None Include="Resources\Emotes\Tier3\wubbyEYPOWER.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

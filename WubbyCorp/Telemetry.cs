@@ -18,9 +18,6 @@ namespace WubbyCorp {
         /// <summary>
         /// Send an event to Google Analytics.
         /// </summary>
-        /// <param name="action"></param>
-        /// <param name="label"></param>
-        /// <param name="value"></param>
         public static void TrackEvent(string action, string label, int value) => Track("event", action, label, value);
 
         private static void Track(string type, string action, string label, int value) {

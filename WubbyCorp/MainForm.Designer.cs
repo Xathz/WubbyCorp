@@ -26,10 +26,10 @@
             this.components = new System.ComponentModel.Container();
             this.TrayNotifyIcon = new System.Windows.Forms.NotifyIcon(this.components);
             this.TrayContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.ExitMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.MinimizeToTrayMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.ToolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.CloseToTrayMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ToolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.ExitMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.TrayContextMenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -49,33 +49,33 @@
             this.TrayContextMenuStrip.Name = "TrayContextMenuStrip";
             this.TrayContextMenuStrip.Size = new System.Drawing.Size(161, 76);
             // 
-            // ExitMenuItem
-            // 
-            this.ExitMenuItem.Name = "ExitMenuItem";
-            this.ExitMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.ExitMenuItem.Text = "Exit";
-            this.ExitMenuItem.Click += new System.EventHandler(this.ExitMenuItem_Click);
-            // 
             // MinimizeToTrayMenuItem
             // 
             this.MinimizeToTrayMenuItem.CheckOnClick = true;
             this.MinimizeToTrayMenuItem.Name = "MinimizeToTrayMenuItem";
-            this.MinimizeToTrayMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.MinimizeToTrayMenuItem.Size = new System.Drawing.Size(160, 22);
             this.MinimizeToTrayMenuItem.Text = "Minimize to tray";
             this.MinimizeToTrayMenuItem.CheckedChanged += new System.EventHandler(this.MinimizeToTrayMenuItem_CheckedChanged);
-            // 
-            // ToolStripSeparator1
-            // 
-            this.ToolStripSeparator1.Name = "ToolStripSeparator1";
-            this.ToolStripSeparator1.Size = new System.Drawing.Size(177, 6);
             // 
             // CloseToTrayMenuItem
             // 
             this.CloseToTrayMenuItem.CheckOnClick = true;
             this.CloseToTrayMenuItem.Name = "CloseToTrayMenuItem";
-            this.CloseToTrayMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.CloseToTrayMenuItem.Size = new System.Drawing.Size(160, 22);
             this.CloseToTrayMenuItem.Text = "Close to tray";
             this.CloseToTrayMenuItem.CheckedChanged += new System.EventHandler(this.CloseToTrayMenuItem_CheckedChanged);
+            // 
+            // ToolStripSeparator1
+            // 
+            this.ToolStripSeparator1.Name = "ToolStripSeparator1";
+            this.ToolStripSeparator1.Size = new System.Drawing.Size(157, 6);
+            // 
+            // ExitMenuItem
+            // 
+            this.ExitMenuItem.Name = "ExitMenuItem";
+            this.ExitMenuItem.Size = new System.Drawing.Size(160, 22);
+            this.ExitMenuItem.Text = "Exit";
+            this.ExitMenuItem.Click += new System.EventHandler(this.ExitMenuItem_Click);
             // 
             // MainForm
             // 
