@@ -1,7 +1,10 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Drawing;
-using System.IO;
+using System.Drawing.Drawing2D;
+using System.Linq;
 using System.Windows.Forms;
+using WubbyCorp.GameData;
 using WubbyCorp.Settings;
 
 namespace WubbyCorp {
@@ -53,9 +56,16 @@ namespace WubbyCorp {
             TrayContextMenuStrip.PerformLayout();
             TrayNotifyIcon.Visible = true;
 
+            WubbyCadosTotalLabel.Text = WubbyCadosManager.TotalFormatted();
+            WubbyCadosManager.TotalChanged += WubbyCadosManager_TotalChanged;
+
 #if !DEBUG
             Telemetry.TrackEvent("Launched", "TimesLaunched", SettingsManager.Configuration.TimesLaunched);
 #endif
+        }
+
+        private void WubbyCadosManager_TotalChanged(object sender, PropertyChangedEventArgs e) {
+            WubbyCadosTotalLabel.Text = WubbyCadosManager.TotalFormatted();
         }
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e) {
@@ -68,9 +78,26 @@ namespace WubbyCorp {
                 }
             }
 
+            GameDataManager.Configuration.WubbyCados = WubbyCadosManager.Total;
+
+            foreach (CustomControls.Company company in Controls.OfType<CustomControls.Company>()) {
+                if (GameDataManager.Configuration.Companies.ContainsKey(company.CompanyDisplayNameFormatted())) {
+                    GameDataManager.Configuration.Companies[company.CompanyDisplayNameFormatted()] = company;
+                } else {
+                    GameDataManager.Configuration.Companies.Add(company.CompanyDisplayNameFormatted(), company);
+                }
+            }
+
+            GameDataManager.Save();
             SettingsManager.Save();
             LoggingManager.Log.Info("Exiting application.");
             LoggingManager.Flush();
+        }
+
+        private void HeaderPanel_Paint(object sender, PaintEventArgs e) {
+            using (LinearGradientBrush brush = new LinearGradientBrush(HeaderPanel.ClientRectangle, SystemColors.Control, SystemColors.ControlDark, LinearGradientMode.Vertical)) {
+                e.Graphics.FillRectangle(brush, HeaderPanel.ClientRectangle);
+            }
         }
 
         private void MainForm_LocationChanged(object sender, EventArgs e) {
@@ -80,6 +107,8 @@ namespace WubbyCorp {
         }
 
         private void MainForm_Resize(object sender, EventArgs e) {
+            HeaderPanel.Refresh();
+
             if (SettingsManager.Configuration.MinimizeToTray) {
                 if (WindowState == FormWindowState.Normal) {
                     ShowInTaskbar = true;
@@ -90,6 +119,13 @@ namespace WubbyCorp {
 
             if (WindowState == FormWindowState.Normal) {
                 SettingsManager.Configuration.MainForm.Size = Size;
+            }
+        }
+
+        private void MenuButton_MouseDown(object sender, MouseEventArgs e) {
+            if (e.Button == MouseButtons.Left || e.Button == MouseButtons.Right) {
+                TrayContextMenuStrip.PerformLayout();
+                TrayContextMenuStrip.Show(MenuButton, e.Location);
             }
         }
 
