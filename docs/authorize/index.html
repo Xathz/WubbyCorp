@@ -20,7 +20,7 @@
         <script type="text/javascript">
             $(document).ready(function() {
                 var clientid = "v2uxmjgeakc3510uu8wifcvh36sd7l";
-                var scope    = "chat:read+user_subscriptions";
+                var scope    = "chat:read+user_read+user_subscriptions";
                 var redirect = "https://wubbycorp.xathz.net/authorize/";
 
                 $.urlParam = function(name) {
@@ -33,16 +33,16 @@
                 var error = $.urlParam('error_description');
 
                 if (token) {
-                    ga("send", "event", "Web", "TwitchAuth", "Success");
                     $("#oauthtoken").val('oauth:' + encodeURIComponent(token));
                     $("#success").show();
                     $("#content").hide();
+                    dataLayer.push({"TwitchAuth": "Success"});
                 }
 
                 if (error) {
-                    ga("send", "event", "Web", "TwitchAuth", "Fail");
                     $("#faildescription").val((error).replace(/\+/g, ' '));
                     $("#fail").show();
+                    dataLayer.push({"TwitchAuth": "Fail"});
                 }
 
                 $("#twitchlink").attr("href", 'https://id.twitch.tv/oauth2/authorize?response_type=token&force_verify=true&client_id=' + clientid + '&scope=' + scope + '&redirect_uri=' + redirect);
