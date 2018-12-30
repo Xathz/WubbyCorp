@@ -1,13 +1,28 @@
-﻿namespace WubbyCorp {
+﻿using System.ComponentModel;
+using WubbyCorp.Extensions;
+
+namespace WubbyCorp {
 
     internal static class WubbyCadosManager {
 
         private static readonly object _WubbyCadosLock = new object();
 
+        public static event PropertyChangedEventHandler TotalChanged;
+        private static void OnTotalChanged(string propertyName) => TotalChanged?.Invoke(TotalChanged, new PropertyChangedEventArgs(propertyName));
+
         /// <summary>
         /// Total WubbyCados.
         /// </summary>
-        public static double Total { get; private set; }
+        private static double _Total;
+        public static double Total {
+            get => _Total;
+            private set {
+                if (!(_Total == value)) {
+                    _Total = value;
+                    OnTotalChanged(nameof(Total));
+                }
+            }
+        }
 
         /// <summary>
         /// Add WubbyCados to the <see cref="Total"/>.
@@ -39,6 +54,14 @@
                     Total = tempTotal;
                 }
             }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public static string TotalFormatted() {
+            (double value, string dictionaryWord) = Total.ToDictionaryWord();
+            return $"{((Total > 999D) ? value.ToString("N2") : value.ToString("N0"))} {((string.IsNullOrEmpty(dictionaryWord)) ? "" : $"{dictionaryWord} ")}WubbyCado{((Total == 1D) ? "" : "s")}";
         }
 
     }

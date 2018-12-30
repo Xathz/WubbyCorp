@@ -35,6 +35,15 @@ namespace WubbyCorp {
             SettingsManager.Save();
             // ================
 
+
+            // Process game data
+            WubbyCadosManager.Add(GameDataManager.Configuration.WubbyCados);
+
+
+
+
+            // =================
+
             Application.Run(new MainForm());
         }
 
