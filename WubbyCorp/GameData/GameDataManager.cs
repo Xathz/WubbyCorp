@@ -41,7 +41,8 @@ namespace WubbyCorp.GameData {
                 JsonSerializer jsonSerializer = new JsonSerializer() {
                     ContractResolver = contractResolver,
                     NullValueHandling = NullValueHandling.Include,
-                    Formatting = Formatting.Indented
+                    Formatting = Formatting.Indented,
+                    ReferenceLoopHandling = ReferenceLoopHandling.Ignore
                 };
 
                 jsonSerializer.Serialize(jsonWriter, Configuration, typeof(Configuration));
