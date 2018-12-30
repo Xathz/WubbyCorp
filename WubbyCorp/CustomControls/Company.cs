@@ -2,37 +2,50 @@
 using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
+using Newtonsoft.Json;
 using WubbyCorp.Extensions;
-using WubbyCorp.Utilities;
+using WubbyCorp.GameData;
 
-namespace WubbyCorp.Controls {
+namespace WubbyCorp.CustomControls {
 
+    [JsonObject(MemberSerialization.OptIn)]
     public partial class Company : UserControl {
 
         public Company() {
             InitializeComponent();
 
-            // Not sute if I like the wubbyCado icon on the button or not
+            // Not sure if I like the wubbyCado icon on the button or not
             //BuyButton.ImageAlign = ContentAlignment.MiddleRight;
             //BuyButton.TextImageRelation = TextImageRelation.TextBeforeImage;
             //BuyButton.Image = ImageUtils.ResizeImage(Properties.Resources.wubbyCado, 24, 24);
         }
 
         private void Company_Load(object sender, EventArgs e) {
+            if (GameDataManager.Configuration.Companies.ContainsKey(CompanyDisplayNameFormatted())) {
+                Multiplier = GameDataManager.Configuration.Companies[CompanyDisplayNameFormatted()].Multiplier;
+                ProductionInterval = GameDataManager.Configuration.Companies[CompanyDisplayNameFormatted()].ProductionInterval;
+                Production = GameDataManager.Configuration.Companies[CompanyDisplayNameFormatted()].Production;
+                BuyPrice = GameDataManager.Configuration.Companies[CompanyDisplayNameFormatted()].BuyPrice;
+                BuyAmount = GameDataManager.Configuration.Companies[CompanyDisplayNameFormatted()].BuyAmount;
+                CompanyLevel = GameDataManager.Configuration.Companies[CompanyDisplayNameFormatted()].CompanyLevel;
+            }
+
             SetBuyButtonText();
+
             ProductionTimer.Start();
         }
 
         private void BuyButton_Click(object sender, EventArgs e) {
+            double buyCost = (BuyPrice * BuyAmount);
+
             // TODO Subtract from the total WubbyCados
+
         }
 
-        private void CompanyLogoPictureBox_Click(object sender, EventArgs e) {
-            // TODO Add to the total WubbyCados
-        }
+        private void CompanyLogoPictureBox_MouseDown(object sender, MouseEventArgs e) => WubbyCadosManager.Add(1D);
 
         private void ProductionTimer_Tick(object sender, EventArgs e) {
-   
+            
         }
 
         private void SetBuyButtonText() {
@@ -47,6 +60,7 @@ namespace WubbyCorp.Controls {
         /// <summary>
         /// Gets or sets the multiplier used to calculate the <see cref="Production"/>.
         /// </summary>
+        [JsonProperty]
         public int Multiplier {
             get => _Multiplier;
             set {
@@ -64,6 +78,7 @@ namespace WubbyCorp.Controls {
         /// <summary>
         /// Gets or sets how often a production cycle takes in milliseconds.
         /// </summary>
+        [JsonProperty]
         public int ProductionInterval {
             get => _ProductionInterval;
             set {
@@ -91,6 +106,7 @@ namespace WubbyCorp.Controls {
         /// <summary>
         /// Gets or sets how many WubbyCados to make in a single <see cref="ProductionInterval"/>.
         /// </summary>
+        [JsonProperty]
         public double Production {
             get => _Production;
             set {
@@ -108,6 +124,7 @@ namespace WubbyCorp.Controls {
         /// <summary>
         /// Gets or sets the cost of the next <see cref="CompanyLevel"/> in WubbyCados.
         /// </summary>
+        [JsonProperty]
         public double BuyPrice {
             get => _BuyPrice;
             set {
@@ -127,6 +144,7 @@ namespace WubbyCorp.Controls {
         /// <summary>
         /// Gets or sets how many <see cref="CompanyLevel"/> to buy.
         /// </summary>
+        [JsonProperty]
         public int BuyAmount {
             get => _BuyAmount;
             set {
@@ -159,6 +177,42 @@ namespace WubbyCorp.Controls {
             }
         }
 
+        public event PropertyChangedEventHandler MarqueeEnabledChanged;
+        protected void OnMarqueeEnabledChanged(string propertyName) => MarqueeEnabledChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+
+        private bool _MarqueeEnabled = false;
+        /// <summary>
+        /// Gets or sets a value indicating whether the progress bar marquee is enabled.
+        /// </summary>
+        public bool MarqueeEnabled {
+            get => _MarqueeEnabled;
+            set {
+                if (!(_MarqueeEnabled == value)) {
+                    _MarqueeEnabled = value;
+
+                    if (_MarqueeEnabled) {
+                        if (BuyButton.InvokeRequired) {
+                            Invoke(new Action(() => ProductionProgressBar.Style = ProgressBarStyle.Marquee));
+                        } else {
+                            ProductionProgressBar.Style = ProgressBarStyle.Marquee;
+                        }
+                    } else {
+                        if (BuyButton.InvokeRequired) {
+                            Invoke(new Action(() => {
+                                ProductionProgressBar.Value = 0;
+                                ProductionProgressBar.Style = ProgressBarStyle.Blocks;
+                            }));
+                        } else {
+                            ProductionProgressBar.Value = 0;
+                            ProductionProgressBar.Style = ProgressBarStyle.Blocks;
+                        }
+                    }
+
+                    OnMarqueeEnabledChanged(nameof(BuyButtonEnabled));
+                }
+            }
+        }
+
         public event PropertyChangedEventHandler CompanyLogoChanged;
         protected void OnCompanyLogoChanged(string propertyName) => CompanyLogoChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
 
@@ -181,6 +235,11 @@ namespace WubbyCorp.Controls {
 
         public event PropertyChangedEventHandler CompanyDisplayNameChanged;
         protected void OnCompanyDisplayNameChanged(string propertyName) => CompanyDisplayNameChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+
+        /// <summary>
+        /// Gets the company display name formatted with no spaces.
+        /// </summary>
+        public string CompanyDisplayNameFormatted() => CompanyDisplayName.Replace(" ", string.Empty);
 
         /// <summary>
         /// Gets or sets the company display name.
@@ -225,6 +284,7 @@ namespace WubbyCorp.Controls {
         /// <summary>
         /// Gets or sets the company level.
         /// </summary>
+        [JsonProperty]
         public string CompanyLevel {
             get => CompanyLevelLabel.Text;
             set {

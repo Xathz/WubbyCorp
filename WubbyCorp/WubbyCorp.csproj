@@ -64,10 +64,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Constants.cs" />
-    <Compile Include="Controls\Company.cs">
+    <Compile Include="CustomControls\Company.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Controls\Company.Designer.cs">
+    <Compile Include="CustomControls\Company.Designer.cs">
       <DependentUpon>Company.cs</DependentUpon>
     </Compile>
     <Compile Include="Extensions\DoubleExt.cs" />
@@ -94,7 +94,7 @@
     <Compile Include="Telemetry.cs" />
     <Compile Include="Utilities\ImageUtils.cs" />
     <Compile Include="WubbyCadosManager.cs" />
-    <EmbeddedResource Include="Controls\Company.resx">
+    <EmbeddedResource Include="CustomControls\Company.resx">
       <DependentUpon>Company.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="OAuthForm.resx">
